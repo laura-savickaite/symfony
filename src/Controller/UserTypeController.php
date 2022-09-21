@@ -35,19 +35,20 @@ class UserTypeController extends AbstractController
         ]);
         $userform->handleRequest($request);
 
+        $password = $user->getPassword();
 
         if($userform->isSubmitted() && $userform->isValid()) {
-            // if(!empty($password)) {
+            if(!empty($password)) {
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $userform->get('plainPassword')->getData()
+                    )
+                ); 
 
-            //     $user->setPassword(
-            //         $userPasswordHasher->hashPassword(
-            //             $user,
-            //             $userform->get('plainPassword')->getData()
-            //         )
-            //     ); 
-
-            // }
-
+                $entityManager->persist($user);
+                $entityManager->flush();
+            }
 
                 $entityManager->persist($user);
                 $entityManager->flush();
