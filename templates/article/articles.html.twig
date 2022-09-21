@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}View articles{% endblock %}
+
+{% block body %}
+
+{# {{dump()}} #}
+    {% for article in articles %}
+        <h1>{{article.Title}}</h1>
+        <p>{{article.Content}}</p>
+        <p>{{article.Author.login}}</p>
+    {% endfor %}
+    
+{% endblock %}
