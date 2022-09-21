@@ -37,6 +37,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'Author', targetEntity: Article::class, orphanRemoval: true)]
     private Collection $articles;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Login = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -169,6 +172,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $article->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLogin(): ?string
+    {
+        return $this->Login;
+    }
+
+    public function setLogin(string $Login): self
+    {
+        $this->Login = $Login;
 
         return $this;
     }
