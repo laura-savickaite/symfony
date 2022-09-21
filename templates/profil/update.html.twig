@@ -9,19 +9,19 @@
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
 
+
     <div class="example-wrapper">
-        <form action="{{ path('app_profil') }}" method="post">
-            <label for="username">Login:</label>
-            <input type="text" id="username" name="_username" value="{{ app.user.login }}"/>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="_password"/>
 
-            {# If you want to control the URL the user is redirected to on success
-            <input type="hidden" name="_target_path" value="/account"/> #}
+    {# {{ dump() }} #}
 
-            <button type="submit">update</button>
-        </form>
-    </div>
+    {{ form_start(updateForm) }}
+        {{ form_row(updateForm.login) }}
+        {{ form_row(updateForm.plainPassword, {
+            label: 'Password'
+        } )}}
+        <button type="submit">update</button>
+    {{ form_end(updateForm) }}
+    </div> 
 
 {% endblock %}
