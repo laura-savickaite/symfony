@@ -49,7 +49,6 @@ class ArticleController extends AbstractController {
         // $repository = $doctrine->getRepository(Article::class);
         $articles = $repository->findAll();
 
-        // dd($article);
 
         return $this->render('article/articles.html.twig', [
             'articles' => $articles,

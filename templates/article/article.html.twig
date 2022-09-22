@@ -9,6 +9,10 @@
     <h1>{{article.Title}}</h1>
     <p>{{article.Content}}</p>
     <p>{{article.Author.login}}</p>
+    {% for comment in article.Comments %}
+        <p>{{comment.Content}}</p>
+        <p>{{comment.User.login}}</p>
+    {% endfor %}
 
         {{ form_start(addComment) }}
             {{ form_row(addComment.Content, {
