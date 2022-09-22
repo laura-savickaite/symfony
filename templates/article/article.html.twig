@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}View article{% endblock %}
+
+{% block body %}
+
+{{dump()}}
+
+    <h1>{{article.Title}}</h1>
+    <p>{{article.Content}}</p>
+    <p>{{article.Author.login}}</p>
+
+        {{ form_start(addComment) }}
+            {{ form_row(addComment.Content, {
+                label: 'Tap your comment'
+            })}}
+            <button type="submit" class="btn">Add</button>
+        {{ form_end(addComment) }}
+{% endblock %}

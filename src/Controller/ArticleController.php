@@ -4,13 +4,16 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Article;
+use App\Entity\Comments;
 use App\Form\ArticleFormType;
+use App\Form\CommentFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ArticleController extends AbstractController {
 
@@ -38,16 +41,50 @@ class ArticleController extends AbstractController {
         ]);
     }
 
-    #[Route('/articles', name: 'app_addarticle')]
+    #[Route('/articles', name: 'app_articles')]
     public function showArticle(EntityManagerInterface $entityManager, PersistenceManagerRegistry $doctrine): Response {
 
-        $repository = $doctrine->getRepository(Article::class);
+        $repository = $entityManager -> getRepository(Article::class);
+        // semblable à :
+        // $repository = $doctrine->getRepository(Article::class);
         $articles = $repository->findAll();
 
         // dd($article);
 
         return $this->render('article/articles.html.twig', [
             'articles' => $articles,
+        ]);
+    }
+
+    #[Route('/articles/{id}', name: 'app_singlearticle')]
+    public function readArticle(Request $request, EntityManagerInterface $entityManager, PersistenceManagerRegistry $doctrine): Response {
+
+        //afficher l'article
+        $id = $request->get('id');
+        $repository = $entityManager -> getRepository(Article::class);
+        $article = $repository->find($id);
+        // dd($article);
+
+        //ajoute un commentaire
+        $user = $this->getUser();
+        // dd(new \DateTime());
+
+        $comment = new Comments();
+        $comment -> setUser($user);
+        $comment -> setDate(new \DateTime());
+        $comment -> setArticle($article);
+        $addComment = $this->createForm(CommentFormType::class, $comment);
+        $addComment -> handleRequest($request);
+
+        if($addComment -> isSubmitted() && $addComment -> isValid()) {
+            $entityManager->persist($comment);
+            $entityManager->flush($comment);
+        }
+
+
+        return $this->render('article/article.html.twig', [
+            'article' => $article,
+            'addComment' => $addComment->createView(),
         ]);
     }
 

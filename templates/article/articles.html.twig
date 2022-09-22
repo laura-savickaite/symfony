@@ -6,7 +6,7 @@
 
 {# {{dump()}} #}
     {% for article in articles %}
-        <h1>{{article.Title}}</h1>
+        <a href="{{path('app_singlearticle', {id:article.id})}}"><h1>{{article.Title}}</h1></a>
         <p>{{article.Content}}</p>
         <p>{{article.Author.login}}</p>
     {% endfor %}
