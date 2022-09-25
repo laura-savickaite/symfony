@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <article class="flex flex-col justify-center content-center">
+        <h1 class="text-7xl font-sans font-extralight text-center pt-36">Welcome on my blog</h1>
+        <a href={{path('app_articles')}} class="text-pink-700 text-center pt-5">Check my posts</a>
+    </article>
+{% endblock %}

@@ -4,23 +4,14 @@
 
 {% block body %}
 
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
 
 
-    <div class="example-wrapper">
-
-
+    <div class="font-sans">
     {# {{ dump() }} #}
-
-    {{ form_start(updateForm) }}
-        {{ form_row(updateForm.login) }}
-        {{ form_row(updateForm.plainPassword, {
-            label: 'Password'
-        } )}}
-        <button type="submit">update</button>
+    {{ form_start(updateForm, { 'attr' : { 'class': 'flex justify-center pt-36' } }) }}
+        {{ form_row(updateForm.login, { 'attr' : { 'class': 'm-5 border' } }) }}
+        {{ form_row(updateForm.plainPassword, { 'attr' : { 'class': 'm-5 border' }, label: 'Password' })}}
+        <button type="submit" class="text-pink-700">update</button>
     {{ form_end(updateForm) }}
     </div> 
 
