@@ -9,8 +9,8 @@
     <div class="font-sans">
     {# {{ dump() }} #}
     {{ form_start(updateForm, { 'attr' : { 'class': 'flex justify-center pt-36' } }) }}
-        {{ form_row(updateForm.login, { 'attr' : { 'class': 'm-5 border' } }) }}
-        {{ form_row(updateForm.plainPassword, { 'attr' : { 'class': 'm-5 border' }, label: 'Password' })}}
+        {{ form_row(updateForm.login, { 'attr' : { 'class': 'm-5 border hover:border-pink-700' } }) }}
+        {{ form_row(updateForm.plainPassword, { 'attr' : { 'class': 'm-5 border hover:border-pink-700' }, label: 'Password' })}}
         <button type="submit" class="text-pink-700">update</button>
     {{ form_end(updateForm) }}
     </div> 
