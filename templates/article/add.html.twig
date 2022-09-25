@@ -3,8 +3,14 @@
 {% block title %}Add an article{% endblock %}
 
 {% block body %}
-    {{ form_start(addArticle) }}
 
-    <button type="submit" class="btn">Add</button>
+
+    {{ form_start(addArticle, { 'attr' : { 'class': 'pt-36 font-sans ml-10' } }) }}
+
+        {{form_row(addArticle.Title, { 'attr' : { 'class': 'm-5 border hover:border-pink-700' } })}}
+        {{form_row(addArticle.Content, { 'attr' : { 'class': 'flex flex-col justify-center m-5 border hover:border-pink-700' } })}}
+
+        <button type="submit" class="text-pink-700 ml-20">Add</button>
     {{ form_end (addArticle) }}
+
 {% endblock %}

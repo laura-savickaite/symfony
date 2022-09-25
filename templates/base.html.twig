@@ -20,11 +20,18 @@
 	<body>
 		<header class="h-12 text-right font-sans border border-inherit antialiased tracking-wide pt-3">
 			<a href={{path('app_home')}} class="cursor-pointer hover:text-pink-700 mr-4">Home</a>
+			<a href={{path('app_articles')}} class="cursor-pointer hover:text-pink-700 mr-4">Articles</a>
+			{% if is_granted("ROLE_ADMIN") %}
+				<a href="/admin" class="cursor-pointer hover:text-pink-700 mr-4">Admin</a>
+				<a href={{path('app_addarticle')}} class="cursor-pointer hover:text-pink-700 mr-4">Add Article</a>
+				<a href={{path('app_logout')}} class="cursor-pointer hover:text-pink-700 mr-4">Logout</a>
+			{% elseif is_granted("ROLE_USER") %}
+				<a href={{path('app_profil')}} class="cursor-pointer hover:text-pink-700 mr-4">Profil</a>
+				<a href={{path('app_logout')}} class="cursor-pointer hover:text-pink-700 mr-4">Logout</a>
+			{% else %}
 			<a href={{path('app_register')}} class="cursor-pointer hover:text-pink-700 mr-4">Register</a>
 			<a href={{path('app_login')}} class="cursor-pointer hover:text-pink-700 mr-4">Login</a>
-			<a href={{path('app_profil')}} class="cursor-pointer hover:text-pink-700 mr-4">Profil</a>
-			<a href={{path('app_articles')}} class="cursor-pointer hover:text-pink-700 mr-4">Articles</a>
-			<a href={{path('app_logout')}} class="cursor-pointer hover:text-pink-700 mr-4">Logout</a>
+			{% endif %}
 		</header>
 
 		<main>
