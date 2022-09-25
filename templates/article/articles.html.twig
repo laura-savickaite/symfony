@@ -5,10 +5,12 @@
 {% block body %}
 
 {# {{dump()}} #}
+<div class="pl-40 border leading-10 font-sans">
     {% for article in articles %}
-        <a href="{{path('app_singlearticle', {id:article.id})}}"><h1>{{article.Title}}</h1></a>
-        <p>{{article.Content}}</p>
-        <p>{{article.Author.login}}</p>
+        <a href="{{path('app_singlearticle', {id:article.id})}}" class="font-semibold text-2xl hover:text-pink-700"><h1>{{article.Title}}</h1></a>
+        <p class="pl-5">{{article.Content}}</p>
+        <p class="text-xs">written by {{article.Author.login}}</p>
     {% endfor %}
+</div>
     
 {% endblock %}

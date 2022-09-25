@@ -7,23 +7,18 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
+    <div class="font sans">
+        <form action="{{ path('app_login') }}" method="post" class="flex justify-center pt-36">
+            <label for="username" class="m-5">Email:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" class="m-5 border hover:border-pink-700"/>
 
-    <div class="example-wrapper">
-        <form action="{{ path('app_login') }}" method="post">
-            <label for="username">Email:</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}"/>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="_password"/>
+            <label for="password" class="m-5">Password:</label>
+            <input type="password" id="password" name="_password" class="m-5 border hover:border-pink-700"/>
 
             {# If you want to control the URL the user is redirected to on success
             <input type="hidden" name="_target_path" value="/account"/> #}
 
-            <button type="submit">login</button>
+            <button type="submit" class="text-pink-700">Login</button>
         </form>
     </div>
 {% endblock %}
